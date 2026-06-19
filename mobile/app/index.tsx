@@ -1,3 +1,3 @@
-import { FilesListScreen } from '../src/files-list/components/FilesListScreen';
+import { FilesListScreen } from 'src/files-list/components/FilesListScreen';
 
 export default FilesListScreen;

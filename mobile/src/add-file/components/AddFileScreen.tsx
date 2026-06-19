@@ -1,6 +1,8 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
+import { useFilePicker } from 'src/add-file/hooks/useFilePicker';
 import { Dropzone } from './Dropzone';
+import { FileConfirmCard } from './FileConfirmCard';
 
 const Container = styled(SafeAreaView)`
   flex: 1;
@@ -22,10 +24,28 @@ const Subtitle = styled.Text`
   margin-bottom: 28px;
 `;
 
-export const AddFileScreen = () => (
-  <Container edges={['bottom']}>
-    <Title>Add a file</Title>
-    <Subtitle>Pick anything — images, docs, designs. We'll keep them organized.</Subtitle>
-    <Dropzone />
-  </Container>
-);
+export const AddFileScreen = () => {
+  const { file, pick, clear } = useFilePicker();
+
+  const heading = file ? 'Ready to upload?' : 'Add a file';
+  const subtitle = file
+    ? 'Review the file below, then tap upload to finish.'
+    : "Pick an image to get started. We’ll keep them organized.";
+
+  return (
+    <Container edges={['bottom']}>
+      <Title>{heading}</Title>
+      <Subtitle>{subtitle}</Subtitle>
+      {file ? (
+        <FileConfirmCard
+          file={file}
+          onClear={clear}
+          onChangeFile={pick}
+          onUpload={() => {}}
+        />
+      ) : (
+        <Dropzone onPress={pick} />
+      )}
+    </Container>
+  );
+};
