@@ -1,8 +1,13 @@
 import { Ionicons } from '@expo/vector-icons';
 import styled, { useTheme } from 'styled-components/native';
+import type { ThemedProps } from 'src/types';
 
-const Card = styled.View`
-  background-color: ${({ theme }) => theme.colors.surface};
+type Props = {
+  onPress: () => void;
+};
+
+const Card = styled.TouchableOpacity`
+  background-color: ${({ theme }: ThemedProps) => theme.colors.surface};
   border-width: 1.5px;
   border-style: dashed;
   border-color: #d1d5db;
@@ -16,7 +21,7 @@ const IconBadge = styled.View`
   width: 80px;
   height: 80px;
   border-radius: 40px;
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }: ThemedProps) => theme.colors.background};
   align-items: center;
   justify-content: center;
   margin-bottom: 4px;
@@ -25,24 +30,31 @@ const IconBadge = styled.View`
 const Label = styled.Text`
   font-size: 16px;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }: ThemedProps) => theme.colors.text};
 `;
 
 const Hint = styled.Text`
-  font-size: ${({ theme }) => theme.fontSizes.body}px;
-  color: ${({ theme }) => theme.colors.textMuted};
+  font-size: ${({ theme }: ThemedProps) => theme.fontSizes.body}px;
+  color: ${({ theme }: ThemedProps) => theme.colors.textMuted};
 `;
 
-export const Dropzone = () => {
+export const Dropzone = ({ onPress }: Props) => {
   const theme = useTheme();
 
   return (
-    <Card>
+    <Card
+      onPress={onPress}
+      activeOpacity={0.7}
+    >
       <IconBadge>
-        <Ionicons name="cloud-upload-outline" size={34} color={theme.colors.primary} />
+        <Ionicons
+          name="cloud-upload-outline"
+          size={34}
+          color={theme.colors.primary}
+        />
       </IconBadge>
       <Label>Tap to choose a file</Label>
-      <Hint>Up to 100MB · any format</Hint>
+      <Hint>Images only · up to 100MB</Hint>
     </Card>
   );
 };

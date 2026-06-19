@@ -1,5 +1,6 @@
 import { useRouter } from 'expo-router';
 import styled from 'styled-components/native';
+import type { ThemedProps } from 'src/types';
 
 const Container = styled.View`
   align-items: center;
@@ -8,21 +9,21 @@ const Container = styled.View`
 `;
 
 const Heading = styled.Text`
-  font-size: ${({ theme }) => theme.fontSizes.heading}px;
+  font-size: ${({ theme }: ThemedProps) => theme.fontSizes.heading}px;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }: ThemedProps) => theme.colors.text};
   text-align: center;
 `;
 
 const Subtext = styled.Text`
-  font-size: ${({ theme }) => theme.fontSizes.body}px;
-  color: ${({ theme }) => theme.colors.textMuted};
+  font-size: ${({ theme }: ThemedProps) => theme.fontSizes.body}px;
+  color: ${({ theme }: ThemedProps) => theme.colors.textMuted};
   text-align: center;
   line-height: 22px;
 `;
 
 const UploadButton = styled.TouchableOpacity`
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }: ThemedProps) => theme.colors.primary};
   border-radius: 30px;
   padding: 14px 32px;
   align-self: stretch;
@@ -31,7 +32,7 @@ const UploadButton = styled.TouchableOpacity`
 `;
 
 const ButtonLabel = styled.Text`
-  font-size: ${({ theme }) => theme.fontSizes.button}px;
+  font-size: ${({ theme }: ThemedProps) => theme.fontSizes.button}px;
   font-weight: 600;
   color: #fff;
 `;
