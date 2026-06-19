@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import styled from 'styled-components/native';
 
 const Container = styled.View`
@@ -35,12 +36,16 @@ const ButtonLabel = styled.Text`
   color: #fff;
 `;
 
-export const EmptyState = () => (
-  <Container>
-    <Heading>Your nest is empty</Heading>
-    <Subtext>Upload your first file and watch it land here.</Subtext>
-    <UploadButton onPress={() => console.log('Upload a file pressed')}>
-      <ButtonLabel>Upload a file</ButtonLabel>
-    </UploadButton>
-  </Container>
-);
+export const EmptyState = () => {
+  const router = useRouter();
+
+  return (
+    <Container>
+      <Heading>Your nest is empty</Heading>
+      <Subtext>Upload your first file and watch it land here.</Subtext>
+      <UploadButton onPress={() => router.push('/add-file')}>
+        <ButtonLabel>Upload a file</ButtonLabel>
+      </UploadButton>
+    </Container>
+  );
+};
