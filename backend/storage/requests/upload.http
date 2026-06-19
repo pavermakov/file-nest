@@ -1,0 +1,23 @@
+@base_url = http://localhost:8000/api/storage
+@bucket = test_003
+@token = eyJidWNrZXQiOiJ0ZXN0XzAwMyIsImZpbGVfaWQiOiIxZGQ2Mjg1My1kNmViLTRkZGMtODU3Ny0zNWRjMWI1NmQyNDMifQ:1wYJko:Nmw5f22H29on1l-z00eOIs0QXJRJb5Fa-DPKY_ahdDY
+
+### Get upload url
+POST {{base_url}}/uploads/
+Content-Type: application/json
+
+{
+  "bucket": "{{bucket}}"
+}
+
+### Put file in a bucket
+PUT {{base_url}}/upload-direct/{{token}}/
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="photo.jpg"
+Content-Type: image/jpeg
+
+
+< ../../photo.jpg
+--boundary--

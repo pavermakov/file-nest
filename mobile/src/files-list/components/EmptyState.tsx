@@ -1,0 +1,46 @@
+import styled from 'styled-components/native';
+
+const Container = styled.View`
+  align-items: center;
+  padding: 0 32px;
+  gap: 12px;
+`;
+
+const Heading = styled.Text`
+  font-size: ${({ theme }) => theme.fontSizes.heading}px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.text};
+  text-align: center;
+`;
+
+const Subtext = styled.Text`
+  font-size: ${({ theme }) => theme.fontSizes.body}px;
+  color: ${({ theme }) => theme.colors.textMuted};
+  text-align: center;
+  line-height: 22px;
+`;
+
+const UploadButton = styled.TouchableOpacity`
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-radius: 30px;
+  padding: 14px 32px;
+  align-self: stretch;
+  align-items: center;
+  margin-top: 8px;
+`;
+
+const ButtonLabel = styled.Text`
+  font-size: ${({ theme }) => theme.fontSizes.button}px;
+  font-weight: 600;
+  color: #fff;
+`;
+
+export const EmptyState = () => (
+  <Container>
+    <Heading>Your nest is empty</Heading>
+    <Subtext>Upload your first file and watch it land here.</Subtext>
+    <UploadButton onPress={() => console.log('Upload a file pressed')}>
+      <ButtonLabel>Upload a file</ButtonLabel>
+    </UploadButton>
+  </Container>
+);
