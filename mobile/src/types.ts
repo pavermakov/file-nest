@@ -5,12 +5,17 @@ export type ThemedProps = {
 };
 
 export type PickedFile = {
+    uri: string;
     name: string;
     size: number;
     mimeType: string;
 };
 
-export type StoredFile = PickedFile & {
+export type StoredFile = {
     id: string;
-    uploadedAt: Date;
+    original_name: string;
+    content_type: string;
+    size: number;
+    status: string;
+    created_at: string;
 };

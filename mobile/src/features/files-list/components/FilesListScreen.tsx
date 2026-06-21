@@ -1,6 +1,7 @@
+import { ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import { useFiles } from 'src/context/FilesContext';
+import { useFilesList } from 'src/features/files-list/hooks/useFilesList';
 import { formatSize } from 'src/lib/formatSize';
 import { Header } from './Header';
 import { EmptyState } from './EmptyState';
@@ -12,7 +13,7 @@ const Container = styled(SafeAreaView)`
     background-color: ${({ theme }: ThemedProps) => theme.colors.background};
 `;
 
-const EmptyContent = styled.View`
+const CenteredContent = styled.View`
     flex: 1;
     align-items: center;
     justify-content: center;
@@ -24,13 +25,25 @@ const ListContent = styled.View`
 `;
 
 export const FilesListScreen = () => {
-    const { files } = useFiles();
+    const { files, loading } = useFilesList();
     const hasFiles = files.length > 0;
 
     const totalSize = files.reduce((sum, f) => sum + f.size, 0);
     const subtitle = hasFiles
         ? `${files.length} ${files.length === 1 ? 'file' : 'files'} · ${formatSize(totalSize)} used`
         : undefined;
+
+    if (loading) {
+        return (
+            <Container>
+                <Header />
+
+                <CenteredContent>
+                    <ActivityIndicator size="large" />
+                </CenteredContent>
+            </Container>
+        );
+    }
 
     return (
         <Container>
@@ -41,9 +54,9 @@ export const FilesListScreen = () => {
                     <FilesList />
                 </ListContent>
             ) : (
-                <EmptyContent>
+                <CenteredContent>
                     <EmptyState />
-                </EmptyContent>
+                </CenteredContent>
             )}
         </Container>
     );

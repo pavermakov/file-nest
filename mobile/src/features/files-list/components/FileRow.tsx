@@ -65,7 +65,7 @@ const getBaseName = (fileName: string): string => {
 };
 
 export const FileRow = ({ file }: Props) => {
-    const config = getFileTypeConfig(file.mimeType);
+    const config = getFileTypeConfig(file.content_type);
 
     return (
         <Card>
@@ -80,16 +80,16 @@ export const FileRow = ({ file }: Props) => {
             <Info>
                 <NameRow>
                     <FileName numberOfLines={1}>
-                        {getBaseName(file.name)}
+                        {getBaseName(file.original_name)}
                     </FileName>
 
                     <Extension>
-                        {getExtension(file.name)}
+                        {getExtension(file.original_name)}
                     </Extension>
                 </NameRow>
 
                 <Meta>
-                    {formatSize(file.size)} · {formatTimeAgo(file.uploadedAt)}
+                    {formatSize(file.size)} · {formatTimeAgo(new Date(file.created_at))}
                 </Meta>
             </Info>
         </Card>
