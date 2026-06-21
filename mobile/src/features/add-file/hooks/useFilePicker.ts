@@ -15,11 +15,12 @@ export const useFilePicker = () => {
         if (result.canceled) return;
 
         const asset = result.assets[0];
-        const name = asset.fileName ?? asset.uri.split('/').pop() ?? 'image';
+        const uri = asset.uri;
+        const name = asset.fileName ?? uri.split('/').pop() ?? 'image';
         const size = asset.fileSize ?? 0;
         const mimeType = asset.mimeType ?? 'image/jpeg';
 
-        setFile({ name, size, mimeType });
+        setFile({ uri, name, size, mimeType });
     };
 
     const clear = () => setFile(null);

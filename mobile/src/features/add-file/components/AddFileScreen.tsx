@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import { useFiles } from 'src/context/FilesContext';
+import { uploadFile } from 'src/api/files';
 import { useFilePicker } from 'src/features/add-file/hooks/useFilePicker';
 import { Dropzone } from './Dropzone';
 import { FileConfirmCard } from './FileConfirmCard';
@@ -30,8 +30,8 @@ const Subtitle = styled.Text`
 
 export const AddFileScreen = () => {
     const { file, pick, clear } = useFilePicker();
-    const { addFile } = useFiles();
     const [uploaded, setUploaded] = useState(false);
+    const [uploading, setUploading] = useState(false);
     const router = useRouter();
 
     const heading = uploaded
@@ -46,11 +46,16 @@ export const AddFileScreen = () => {
             ? 'Review the file below, then tap upload to finish.'
             : "Pick an image to get started. We'll keep them organized.";
 
-    const handleUpload = () => {
-        if (file) {
-            addFile(file);
+    const handleUpload = async () => {
+        if (!file || uploading) return;
+
+        setUploading(true);
+        try {
+            await uploadFile(file);
+            setUploaded(true);
+        } catch {
+            setUploading(false);
         }
-        setUploaded(true);
     };
 
     const handleUploadAnother = () => {

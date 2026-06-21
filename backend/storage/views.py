@@ -10,6 +10,13 @@ from rest_framework import status
 from .models import StoredFile
 from .utils import bucket_path
 
+class FileListView(APIView):
+    def get(self, request):
+        uploaded_files = StoredFile.objects.filter(status=StoredFile.Status.UPLOADED).order_by("-created_at")
+        response_files = list(uploaded_files.values())
+
+        return Response({ "files": response_files }, status=status.HTTP_200_OK)
+
 class CreateUploadView(APIView):
     def post(self, request):
         bucket = request.data.get("bucket")

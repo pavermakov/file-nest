@@ -1,7 +1,7 @@
 import { FlatList } from 'react-native';
 import { useRouter } from 'expo-router';
 import styled from 'styled-components/native';
-import { useFiles } from 'src/context/FilesContext';
+import { useFilesList } from 'src/features/files-list/hooks/useFilesList';
 import { FileRow } from './FileRow';
 import type { ThemedProps, StoredFile } from 'src/types';
 
@@ -52,7 +52,7 @@ const renderItem = ({ item }: { item: StoredFile }) => (
 const keyExtractor = (item: StoredFile) => item.id;
 
 export const FilesList = () => {
-    const { files } = useFiles();
+    const { files } = useFilesList();
     const router = useRouter();
 
     return (
