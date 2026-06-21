@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "expo-router/entry",
   "dependencies": {
+    "@expo/metro-config": "56.0.14",
     "@expo/vector-icons": "15.0.2",
     "expo": "56.0.12",
     "expo-image-picker": "56.0.18",
@@ -13,10 +14,11 @@
     "react-native": "0.85.3",
     "react-native-safe-area-context": "5.7.0",
     "react-native-screens": "4.25.2",
+    "react-native-svg": "15.15.4",
     "styled-components": "6.4.2"
   },
   "devDependencies": {
-    "@types/react": "19.2.2",
+    "@types/react": "19.2.14",
     "@types/styled-components-react-native": "5.2.5",
     "typescript": "6.0.3"
   },

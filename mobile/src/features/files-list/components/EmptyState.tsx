@@ -42,10 +42,18 @@ export const EmptyState = () => {
 
   return (
     <Container>
-      <Heading>Your nest is empty</Heading>
-      <Subtext>Upload your first file and watch it land here.</Subtext>
+      <Heading>
+        Your nest is empty
+      </Heading>
+
+      <Subtext>
+        Upload your first file and watch it land here.
+      </Subtext>
+
       <UploadButton onPress={() => router.push('/add-file')}>
-        <ButtonLabel>Upload a file</ButtonLabel>
+        <ButtonLabel>
+          Upload a file
+        </ButtonLabel>
       </UploadButton>
     </Container>
   );

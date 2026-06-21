@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import styled, { useTheme } from 'styled-components/native';
 import type { ThemedProps } from 'src/types';
+import { MarchingAntsBorder } from './MarchingAntsBorder';
 
 type Props = {
   onPress: () => void;
@@ -8,9 +9,6 @@ type Props = {
 
 const Card = styled.TouchableOpacity`
   background-color: ${({ theme }: ThemedProps) => theme.colors.surface};
-  border-width: 1.5px;
-  border-style: dashed;
-  border-color: #d1d5db;
   border-radius: 20px;
   padding: 48px 24px;
   align-items: center;
@@ -42,19 +40,27 @@ export const Dropzone = ({ onPress }: Props) => {
   const theme = useTheme();
 
   return (
-    <Card
-      onPress={onPress}
-      activeOpacity={0.7}
-    >
-      <IconBadge>
-        <Ionicons
-          name="cloud-upload-outline"
-          size={34}
-          color={theme.colors.primary}
-        />
-      </IconBadge>
-      <Label>Tap to choose a file</Label>
-      <Hint>Images only · up to 100MB</Hint>
-    </Card>
+    <MarchingAntsBorder borderRadius={20}>
+      <Card
+        onPress={onPress}
+        activeOpacity={0.7}
+      >
+        <IconBadge>
+          <Ionicons
+            name="cloud-upload-outline"
+            size={34}
+            color={theme.colors.primary}
+          />
+        </IconBadge>
+
+        <Label>
+          Tap to choose a file
+        </Label>
+
+        <Hint>
+          Images only · up to 100MB
+        </Hint>
+      </Card>
+    </MarchingAntsBorder>
   );
 };
