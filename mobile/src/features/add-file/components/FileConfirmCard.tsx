@@ -97,10 +97,17 @@ export const FileConfirmCard = ({ file, onClear, onChangeFile, onUpload }: Props
             color={theme.colors.primary}
           />
         </IconBadge>
+
         <FileInfo>
-          <FileName numberOfLines={1}>{file.name}</FileName>
-          <FileSize>{formatSize(file.size)}</FileSize>
+          <FileName numberOfLines={1}>
+            {file.name}
+          </FileName>
+
+          <FileSize>
+            {formatSize(file.size)}
+          </FileSize>
         </FileInfo>
+
         <TouchableOpacity
           hitSlop={8}
           onPress={onClear}
@@ -115,10 +122,15 @@ export const FileConfirmCard = ({ file, onClear, onChangeFile, onUpload }: Props
 
       <ButtonRow>
         <ChangeButton onPress={onChangeFile}>
-          <ChangeButtonText>Change file</ChangeButtonText>
+          <ChangeButtonText>
+            Change file
+          </ChangeButtonText>
         </ChangeButton>
+
         <UploadButton onPress={onUpload}>
-          <UploadButtonText>Upload now</UploadButtonText>
+          <UploadButtonText>
+            Upload now
+          </UploadButtonText>
         </UploadButton>
       </ButtonRow>
     </Card>

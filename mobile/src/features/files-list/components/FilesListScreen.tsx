@@ -18,6 +18,7 @@ const Content = styled.View`
 export const FilesListScreen = () => (
   <Container>
     <Header />
+
     <Content>
       <EmptyState />
     </Content>
